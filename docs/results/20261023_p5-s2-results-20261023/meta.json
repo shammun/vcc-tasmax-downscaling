@@ -1,0 +1,44 @@
+{
+  "id": "20261023_p5-s2-results-20261023",
+  "title": "AI downscaling S2: comparison with the U-Net anomaly model, warmth test, spread calibration",
+  "approved": "push this new results and stuff that you have got into GitHub, and also make a comparison against my last model run ... unit anomaly model ... and all the figures and graphs and charts that you have, also push them to GitHub, so that I can view it ... inside that web page and the GitHub page, so that I can view it from inside my mobile.",
+  "status": "draft",
+  "published": "2026-10-23 14:30",
+  "files": [
+    {
+      "name": "ds54_F1_validation_league.png",
+      "source": "ds_ant_work/figures/ds_54c_fig_s2_results/ds54_F1_validation_league.png",
+      "caption": "F1. Validation (2010-2014, not the test years) daily Tmax RMSE (C) of each AI method, raw (hatched) and with de-warmed conditioning (DWC, solid), against v4.1.1 (10-seed mean 0.7725 C, solid line; one seed 0.9326 C, dashed line, for single members); the initial U-Net anomaly model (highlighted) scores 0.6478 C raw and 0.6477 C with DWC, level with U-Net base (0.6462 / 0.6458) and R1 (0.6438 / 0.6440); n = 16 grid labels (9 distinct grids), 6,646 px, 1,826 days. Limitation: validation only, perfect prognosis on coarsened PRISM (not GCM input); generative ensemble means are seed 1 only and EDM has one seed; DWC changes RMSE by <= 0.005 C, every raw variant FAILS the GCM trend check (F2); the x-axis starts at 0.60 C."
+    },
+    {
+      "name": "ds54_F2_p3_trend_check.png",
+      "source": "ds_ant_work/figures/ds_54c_fig_s2_results/ds54_F2_p3_trend_check.png",
+      "caption": "F2. GCM trend check P3 (16 common SSP5-8.5 models, 2081-2100 vs 1995-2014): worst item-P error, i.e. how much larger than v4.1.1's the per-pixel 95th percentile of the change error is (C), raw (hatched) vs DWC (solid), with the 0.10 C allowance; every raw method fails (U-Net anomaly +0.5952 C, HARMFUL, E44) and every DWC variant passes 16/16 (U-Net anomaly +0.0326 C). Limitation: the DWC pass is conditional on v4.1.1's own warming increment (agreement with v4.1.1, not independent trend skill); the raw HARMFUL verdicts stand; EDM had no raw P3 run."
+    },
+    {
+      "name": "ds54_F3_test_2015_2024.png",
+      "source": "ds_ant_work/figures/ds_54c_fig_s2_results/ds54_F3_test_2015_2024.png",
+      "caption": "F3. One-time test 2015-2024 (k = 5, DWC variants): P1 RMSE change vs v4.1.1 with 0.99 intervals (top: U-Net R1 -14.6 % SUCCESS-F, Flow matching -20.8 % SUCCESS-P, CorrDiff -16.5 % SUCCESS-P (fragile), EDM -6.9 % NO GAIN, EnScale -2.8 % HARMFUL) and the yearly change (bottom); the U-Net anomaly model was never test-evaluated (validation only); n = 16 labels, 6,646 px, 3,653 days. Limitation: perfect prognosis on coarsened PRISM; the gain shrinks every year (U-Net -17.1 % in 2015 to -9.7 % in 2024); member-1 P1 rewards under-dispersion; intervals cover year sampling only (seed range ~2x the half-width); one shared regression backbone, so the deterministic gain is one result."
+    },
+    {
+      "name": "ds54_F4_gain_vs_warmth.png",
+      "source": "ds_ant_work/figures/ds_54c_fig_s2_results/ds54_F4_gain_vs_warmth.png",
+      "caption": "F4. Test 3a (ds_52, re-analysis of the stored 2015-2024 predictions, no new test look): slope beta_L of the log MSE ratio (v4.1.1 / AI) per +1 C of daily coarse-input anomaly (vs 1995-2014 climatology) with 95 % (thick) and 99 % (thin) intervals; all five methods are WARM-ROBUST on all days (99 % intervals above the -0.02 line), but in summer (JJA, report-only) U-Net R1, Flow matching, CorrDiff, EnScale are INCONCLUSIVE (U-Net -0.0182, 99 % down to -0.0240); EDM robust. Limitation: DWC removes the monthly-mean shift, so daily-anomaly sensitivity is not sensitivity to 2081-2100 warming; perfect prognosis on coarsened PRISM; the warm-day slope explains only a share of 0.02 of the observed 2015-2024 gain shrink (ds_52 summary), the rest is unexplained."
+    },
+    {
+      "name": "ds54_F5_spread_calibration.png",
+      "source": "ds_ant_work/figures/ds_54c_fig_s2_results/ds54_F5_spread_calibration.png",
+      "caption": "F5. Spread calibration on validation 2010-2014 only (no test look): fair CRPS (C) vs inflation factor a with the CRPS optimum a* and a_SSR = 1/SSR, SSR on the right axis with the [0.8, 1.25] target band, and rank histograms before/after; inflation improves CRPS (flow 0.399 -> 0.356 C, CorrDiff 0.395 -> 0.367 C) but both are NOT CALIBRATABLE (SSR 1.266 / 1.253 > 1.25; 9 grids, M = 10). Limitation: with M = 10 members, CRPS-optimal inflation about the ensemble's own mean over-inflates (a correct Gaussian ensemble lands at SSR ~1.24), so the rule fails by a hair; one global factor cannot fix seasonal or spatial under-dispersion (hump-shaped histograms after inflation); perfect prognosis on coarsened PRISM."
+    },
+    {
+      "name": "ds52_deciles_all.png",
+      "source": "ds_ant_work/figures/ds_52_gain_vs_warmth/ds52_deciles_all.png",
+      "caption": "All 5 methods (primary fields: U-Net 3-seed mean field, generative seed-1 10-member ensemble mean) vs v4.1.1 10-seed mean. n = 9 distinct grids x 3,653 test days (2015-2024) = 32,877 grid-days, 6,646 mask pixels; deciles of the daily coarse-input anomaly a_gt (1995-2014 calendar-day climatology); bars = 95 % calendar-year block bootstrap (B = 2000). L = ln(MSE_v4.1.1 / MSE_method); L > 0 = method better; G ~ L/2. Caveats: (i) DWC removes the monthly-mean shift, so daily-anomaly sensitivity is not sensitivity to 2081-2100 mean warming; (ii) perfect prognosis on PRISM coarse input (finding 9); (iii) the DWC increment is v4.1.1's own (finding 7); a WARM-ROBUST result does not show independent trend skill, which needs O39(c) (pseudo-reality, deferred). Not a test look (re-analysis of ds_51)."
+    },
+    {
+      "name": "comparison_table.csv",
+      "source": "ds_ant_work/out/ds_54c_fig_s2_results/comparison_table.csv",
+      "caption": "Validation 2010-2014 RMSE, GCM trend check P3 and one-time test 2015-2024 verdicts for v4.1.1 and each AI method, raw and DWC, including the initial U-Net anomaly model (validation only, never test-evaluated). n = 16 labels (9 grids), 6,646 px; perfect prognosis on coarsened PRISM; NOT FOUND marks missing runs."
+    }
+  ]
+}
